@@ -1,0 +1,16 @@
+{
+  "name": "persona-test",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "bluebird": "^3.1.1",
+    "solc": "^0.2.0-1",
+    "web3": "^0.15.1"
+  }
+}
