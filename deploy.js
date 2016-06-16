@@ -43,7 +43,11 @@ readfs(CONTRACT_FILE, 'utf8')
     results.address = receipt.contractAddress;
     console.log('Contract deployed at ' + receipt.contractAddress);
     console.log('Saving result file...');
-    return writefs(RESULT_FILE, buildFileContent());
+    var content = 
+        'var abi = \'' + JSON.stringify(results.abi) + '\';\n\n' +
+        'var address = \'' + results.address + '\';\n\n' +
+        'module.exports = {abi:abi, address:address};\n';
+    return writefs(RESULT_FILE, content);
 })
 .then(function() {
     console.log('Results file created.');
@@ -72,14 +76,6 @@ function deploy(data) {
         gasPrice: Math.pow(10, 12)
     };
     return sendtx(transaction);
-}
-
-function buildFileContent() {
-    return
-        'var abi = \'' + JSON.stringify(results.abi) + '\';\n\n' +
-        'var address = \'' + results.address + '\';\n\n' +
-        'module.exports = {abi:abi, address:address};\n';
-
 }
 
 function getTransactionReceipt(hash) {
